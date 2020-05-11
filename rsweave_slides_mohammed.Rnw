@@ -1,0 +1,362 @@
+\documentclass[9pt]{beamer}
+
+\usepackage[english]{babel} 
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx} 
+\usepackage[space]{grffile} 
+\usepackage{url} 
+\usepackage{booktabs} 
+\usepackage{indentfirst} 
+\usepackage{empheq}
+\usepackage{amssymb,amssymb,mathrsfs} 
+\usepackage[extra]{tipa}
+\allowdisplaybreaks
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{nameref}
+\renewcommand{\sfdefault}{iwona} 
+%\usepackage[margin=1.2in]{geometry}
+\usepackage{enumerate}
+\usepackage{color}
+
+\usepackage{hyperref}
+\usepackage[labelfont=bf]{caption} 
+\usepackage[labelfont=bf]{subcaption} 
+\usepackage{tabularx}
+\usepackage{fontawesome}
+\definecolor{LHCblue}{RGB}{4, 114, 255}
+\usepackage{lmodern}
+
+\hypersetup{
+    colorlinks,
+    citecolor=blue(pigment),
+    linkcolor=blue,
+    backref=true
+}
+
+\usepackage[bibstyle=numeric, citestyle=authoryear, backend=bibtex, useprefix=false]{biblatex}
+\DeclareNameAlias{author}{last-first}
+\usepackage{csquotes}
+\addbibresource{reference.bib}
+
+\renewcommand*{\nameyeardelim}{\addcomma\space}
+\renewbibmacro*{begentry}{\midsentence}
+\makeatletter
+\AtBeginDocument{\toggletrue{blx@useprefix}}
+\makeatother
+
+\linespread{1.2}    
+
+%\newtheorem{definition}{Definition}
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{lemma}{Lemma}
+%\newtheorem{solution}{Solution}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\newcommand{\cvd}{\begin{flushright}$\Box$\end{flushright}}
+\newcommand{\numberset}{\mathbb}
+
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+
+\definecolor{carmine}{rgb}{0.59, 0.0, 0.09}
+\definecolor{calpolypomonagreen}{rgb}{0.12, 0.3, 0.17}
+\definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}
+\definecolor{blue(pigment)}{rgb}{0.2, 0.2, 0.6}
+\definecolor{bistre}{rgb}{0.24, 0.17, 0.12}
+\definecolor{americanrose}{rgb}{1.0, 0.01, 0.24}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{armygreen}{rgb}{0.29, 0.33, 0.13}
+\definecolor{arsenic}{rgb}{0.23, 0.27, 0.29}
+\definecolor{blue-violet}{rgb}{0.54, 0.17, 0.89}
+\definecolor{coolblack}{rgb}{0.0, 0.18, 0.39}
+\definecolor{ashgrey}{rgb}{0.7, 0.75, 0.71}
+\definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}
+\definecolor{bostonuniversityred}{rgb}{0.8, 0.0, 0.0}
+
+%\DeclareNameAlias{author}{last-first}
+\usepackage{csquotes}
+%\addbibresource{reference.bib}
+%\renewcommand*{\nameyeardelim}{\addcomma\space}
+%\renewbibmacro*{begentry}{\midsentence}
+\makeatletter
+%\AtBeginDocument{\toggletrue{blx@useprefix}}
+\makeatother
+
+\usetheme{CambridgeUS}
+\usecolortheme{seagull}
+\usecolortheme[named=LHCblue]{structure}
+\setbeamercolor{titlelike}{}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+\addtobeamertemplate{frametitle}{\vskip-0.8ex}{}
+\useinnertheme{rectangles}
+\setbeamertemplate{blocks}[default]
+\setbeamertemplate{title page}[default][colsep=-4bp,rounded=true]
+
+
+%title page --------------------------------------------------------
+\title{Class Note and Slides Using Sweave in R\\
+\noindent\makebox[\linewidth]{\color{carmine} \rule{\paperwidth}{2pt}}}
+
+\author{Mohammed Moinuddin, PhD \\
+m.moinuddin@ucl.ac.uk}
+
+\institute{PPP Dept, UCL Institute of Child Health}
+\date{6 May 2020, ICH CodeClub}
+
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\begin{frame}
+\titlepage
+\end{frame}
+  
+\begin{frame}
+\frametitle{Introduction}
+\begin{columns}[T] % align columns
+\begin{column}{.52\textwidth}
+What is this and what it does?
+{\color{carmine} \rule{\linewidth}{1pt}}
+\begin{itemize}
+\item[\faChevronRight] Sweave is a powerful and flexible system for creating dynamic reports and reproducible research using \LaTeX.
+\vspace{3mm}
+\item[\faChevronRight] Sweave enables the embedding of R code within \LaTeX documents to generate a PDF file that includes:
+\vspace{3mm}
+\begin{itemize}
+\item[\faAngleRight] narrative, analysis and equations,
+\vspace{2mm}
+\item[\faAngleRight] graphics,
+\vspace{2mm}
+\item[\faAngleRight] code,
+\vspace{2mm}
+\item[\faAngleRight] and the results of computations.
+\end{itemize} 
+\end{itemize}
+
+\end{column}%
+\pause
+\hspace{5mm}
+\begin{column}{.47\textwidth}
+I am fascinated
+{\color{carmine} \rule{\linewidth}{1pt}}
+\begin{itemize}
+\item[\faCircleONotch] I can modify my presentation theme, colour etc. The \texttt{CambridgeUS} is modified here,
+\vspace{2mm}
+\item[\faEnvira] Object management is easy. I can put my image wherever I like to see them,
+\vspace{2mm}
+\item[\faSmileO] I can make my slides live with colours, bullets and objects,
+\vspace{2mm}
+\item[\faCreditCard] I do not pay,
+\vspace{2mm}
+\item[\faGlobe] I can go online with \LaTeX hassle-free. 
+\end{itemize} 
+\end{column}%
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{It's free ! - I like this, You?}
+\begin{columns}[T] % align columns
+\begin{column}{.52\textwidth}
+Pre-requisites:
+{\color{carmine} \rule{\linewidth}{1pt}}
+\begin{figure}[H]   
+	\begin{center}
+			\begin{minipage}[t]{.45\textwidth}
+				\centering
+				%{\footnotesize Large field}\par\medskip
+				\includegraphics[width=2.6cm, height=1.8cm]{r.png}
+				%\captionof{figure}{Another figure}
+				%\label{fig:test2}
+			\end{minipage}
+			\hspace{2mm}
+			\centering
+			\begin{minipage}[t]{.45\textwidth}
+				\centering
+				%{\footnotesize Partitioned field}\par\medskip
+				\includegraphics[width=2.6cm, height=1.8cm]{rstudio.png}
+				%\captionof{figure}{A figure}
+				%\label{fig:test1}
+			\end{minipage}
+			
+			\vspace{5mm}
+			\begin{minipage}[t]{.45\textwidth}
+				\centering
+				%{\footnotesize Large field}\par\medskip
+				\includegraphics[width=2.6cm, height=1.8cm]{miktec.png}
+				%\captionof{figure}{Another figure}
+				%\label{fig:test2}
+			\end{minipage}
+			\hspace{2mm}
+			\centering
+			\begin{minipage}[t]{.45\textwidth}
+				\centering
+				%{\footnotesize Partitioned field}\par\medskip
+				\includegraphics[width=2.6cm, height=1.8cm]{texmaker.png}
+				%\captionof{figure}{A figure}
+				%\label{fig:test1}
+			\end{minipage}
+	\end{center}
+\end{figure}
+\pause
+\begin{itemize}
+\item[\faAsterisk] The distribution of \LaTeX depends on your operating system. I have used \texttt{MikTex} and \texttt{TexMaker}
+\end{itemize}
+\end{column}%
+\pause
+\hspace{5mm}
+\begin{column}{.47\textwidth}
+Check your OS:
+{\color{carmine} \rule{\linewidth}{1pt}}
+\begin{itemize}
+\item[\faApple] The MacTeX distribution contains everything you need,
+\item[\faWindows] Check out the MiKTeX or proTeXt or TeX Live distributions,
+\item[\faLinux] Check your Linux distributions software source for a TeX distribution including \LaTeX. I am using \texttt{Ubuntu},
+\item[\faGlobe] \LaTeX online services like Papeeria, Overleaf, ShareLaTeX, Datazar, and LaTeX base offer the ability to edit, view and download LaTeX files and resulting PDFs.
+\end{itemize} 
+\end{column}%
+\end{columns}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Getting started}
+\begin{itemize}
+\item[\faAngleRight] Open a new R Sweave script (go to \textbf{File | New} and select ``R Sweave") in your RStudio,
+\vspace{1mm}
+\item[\faAngleRight] Set your document class, paper size, font, language and other packages as the priority,
+\vspace{1mm}
+\item[\faAngleRight] Save the file before compiling. File name does not accept spaces in.
+\vspace{1mm}
+\item[\faAngleRight] Click the \textbf{Compile PDF} button to run the script.
+\end{itemize}
+
+\begin{figure}[H]   
+	\begin{center}
+			\begin{minipage}[t]{.45\textwidth}
+				\centering
+				{\footnotesize (a)}\par\medskip
+				\includegraphics[width=4cm, height=4cm]{screenR.png}
+				%\captionof{figure}{Another figure}
+				%\label{fig:test2}
+			\end{minipage}
+			\hspace{1mm}
+			\begin{minipage}[t]{.45\textwidth}
+				\centering
+				{\footnotesize (b)}\par\medskip
+				\includegraphics[width=3.4cm, height=4cm]{screenR2.png}
+				%\captionof{figure}{Another figure}
+				%\label{fig:test2}
+			\end{minipage}
+	\end{center}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Note vs Slide}
+
+\begin{figure}[H]   
+	\begin{center}
+			\begin{minipage}[t]{.45\textwidth}
+				\centering
+				{\footnotesize Note}\par\medskip
+				\includegraphics[width=5cm, height=4cm]{scrNote1.png}
+				%\captionof{figure}{Another figure}
+				%\label{fig:test2}
+			\end{minipage}
+			\hspace{1mm}
+			\begin{minipage}[t]{.45\textwidth}
+				\centering
+				{\footnotesize Slide}\par\medskip
+				\includegraphics[width=5cm, height=4cm]{scrSlide1.png}
+				%\captionof{figure}{Another figure}
+				%\label{fig:test2}
+			\end{minipage}
+	\end{center}
+\end{figure}
+\vspace{3mm}
+\begin{figure}[H]   
+	\begin{center}
+			\begin{minipage}[t]{.45\textwidth}
+				\centering
+				%{\footnotesize Note}\par\medskip
+				\includegraphics[width=5cm, height=4cm]{scrNote2.png}
+				%\captionof{figure}{Another figure}
+				%\label{fig:test2}
+			\end{minipage}
+			\hspace{1mm}
+			\begin{minipage}[t]{.45\textwidth}
+				\centering
+				%{\footnotesize (b)}\par\medskip
+				\includegraphics[width=5cm, height=4cm]{scrSlide2.png}
+				%\captionof{figure}{Another figure}
+				%\label{fig:test2}
+			\end{minipage}
+	\end{center}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{R-code in slide}
+
+\begin{columns}[T] % align columns
+\begin{column}{.32\textwidth}
+\begin{itemize}
+\item[\faAngleRight] use the \texttt{Chunks} menu at the top right of the source editor({\color{green}{\textbf{green}}} colored)
+\item[\faAngleRight] set the options \textit{\texttt{echo, fig, message, warning}} etc
+\end{itemize}
+\vspace{3mm}
+{\footnotesize
+<<fig=FALSE, echo=TRUE>>=
+my_cols <- c("#00AFBB", "#E7B800",
+             "#FC4E07")  
+pairs(iris[,1:4], pch = 19,
+      cex = 0.5,
+      col = my_cols[iris$Species],
+      lower.panel=NULL)
+@
+ }
+\end{column}%
+\hspace{3mm}
+\begin{column}{.65\textwidth}
+<<fig=TRUE, echo=FALSE>>=
+my_cols <- c("#00AFBB", "#E7B800", "#FC4E07")  
+pairs(iris[,1:4], pch = 19,  cex = 0.5,
+      col = my_cols[iris$Species],
+      lower.panel=NULL)
+@
+\vspace{1cm}
+\end{column}%
+\end{columns}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{External figures}
+
+\begin{figure}[H]   
+	\begin{center}
+			\begin{minipage}[t]{.99\textwidth}
+				\centering
+				%\textbf{Thanks for not doing this}\par\medskip
+        \includegraphics[width=5cm, height=5cm]{sleep.jpeg}
+				%\captionof{figure}{Another figure}
+				%\label{fig:test2}
+			\end{minipage}
+	\end{center}
+\end{figure}
+\end{frame}
+
+
+\end{document}

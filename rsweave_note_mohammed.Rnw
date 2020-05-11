@@ -1,0 +1,170 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} 
+
+\usepackage[english]{babel} 
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx} 
+\usepackage[space]{grffile} 
+\usepackage{url} 
+\usepackage{booktabs} 
+\usepackage{indentfirst} 
+\usepackage{empheq}
+\usepackage{amssymb,amssymb,mathrsfs} 
+\usepackage[extra]{tipa}
+\allowdisplaybreaks
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{nameref}
+\renewcommand{\sfdefault}{iwona} 
+\usepackage[margin=1.2in]{geometry}
+\usepackage{enumerate}
+\usepackage{color}
+\usepackage[affil-it]{authblk}
+
+\usepackage{hyperref}
+\usepackage[labelfont=bf]{caption} 
+\usepackage[labelfont=bf]{subcaption} 
+\usepackage{tabularx}
+\usepackage{fontawesome}
+\definecolor{LHCblue}{RGB}{4, 114, 255}
+
+\hypersetup{
+    colorlinks,
+    citecolor=blue(pigment),
+    linkcolor=blue,
+    backref=true
+}
+
+\usepackage[bibstyle=numeric, citestyle=authoryear, backend=bibtex, useprefix=false]{biblatex}
+\DeclareNameAlias{author}{last-first}
+\usepackage{csquotes}
+\addbibresource{reference.bib}
+
+\renewcommand*{\nameyeardelim}{\addcomma\space}
+\renewbibmacro*{begentry}{\midsentence}
+\makeatletter
+\AtBeginDocument{\toggletrue{blx@useprefix}}
+\makeatother
+
+\linespread{1.2}    
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{solution}{Solution}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\newcommand{\cvd}{\begin{flushright}$\Box$\end{flushright}}
+\newcommand{\numberset}{\mathbb}
+
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+
+%title page --------------------------------------------------------
+\title{Class Note and Slides Using Sweave in R}
+\author{Mohammed Moinuddin, PhD \\
+m.moinuddin@ucl.ac.uk}
+
+\vspace{2in}
+\affil{PPP Dept, UCL Institute of Child Health}
+\date{6 May 2020, ICH CodeClub}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\maketitle
+
+\newpage
+\tableofcontents
+
+\newpage
+\section{Introduction}
+\noindent Sweave is a powerful and flexible system for creating dynamic reports and reproducible research using \LaTeX. Sweave enables the embedding of R code within \LaTeX documents to generate a PDF file that includes:
+\begin{itemize}
+\item[\faAngleRight] narrative, analysis and equations,
+\item[\faAngleRight] graphics,
+\item[\faAngleRight] code,
+\item[\faAngleRight] and the results of computations.
+\end{itemize} 
+
+\noindent \textbf{Requirements:} To use Sweave for creating PDF reports \LaTeX need to have installed on your system. It is free. Any package of \LaTeX can be used. The installation guide can be found in \url{https://www.latex-project.org/get/}.
+
+\section{Getting started, text and equations}
+\noindent Assuming you have \LaTeX and RStudio installed and are fully functional, open a new R Sweave script (go to \textbf{File | New} and select ``R Sweave") in your RStudio. Set your document class, paper size, font, language and other packages as the priority. You can define your choice of colour and new commands. For details please follows the \LaTeX manual.
+For class note type simple documents I prefer \texttt{scrartcl} which is the coma-script article class more flexible than \texttt{article} class. You can choose \texttt{article} or \texttt{report} class as well with no problem. {\color{red}{DO NOT}} change other options that come default unless you are too sure. For presentation slides the class is \texttt{beamer}.
+
+
+Now fix your title with other relevants entities such as authors, institution, date etc. The option \texttt{maketitle} will make the title page. The \texttt{maketitle} must be placed after \texttt{begin\{documents\}}. All the \LaTeX commands should be start with a \texttt{forward slash}. 
+
+Once everything is set, you can compile the Sweave document into a PDF using the \textbf{Compile PDF} button on the toolbar. 
+
+Numerical expression inside text (for example, $(\alpha+\beta)$) can be inserted between two \texttt{dollor}($\$ \cdot \$ $) sign. To write a seperate equation or a set of equation there are several options. You can write between double \texttt{dollor}($\$\$ \cdot \$\$ $) sign or use the command \texttt{begin\{equation\}}. An example equation is,
+
+
+To test this hypotheis of equality of two normal percentiles one of the suitable tests is Behrens-Fisher problem. The test statistic for the above-mentioned hypotheis is,
+
+\begin{flalign}
+U = \frac{(\bar{X}_1 + z_{1-p} S_1) - (\bar{X}_2 + z_{1-p} S_2)}{\sqrt{\left(1+\frac{1}{2}z_{1-p}^2 \right)\left(\frac{S_1^2}{n_1} + \frac{S_2^2}{n_2} \right)}}  \label{eq4}
+\end{flalign}
+
+\noindent Under the null hypothesis the test statistic $U$ follows a Student's $t$ distribution with degress of freedom,
+
+\begin{flalign}
+df = \frac{\left(\frac{S_1^2}{n_1} + \frac{S_2^2}{n_2} \right)^2}{\left(\frac{S_1^4}{n_1^2(n_1 - 1)} + \frac{S_2^4}{n_2^2(n_2 - 1)} \right)}  \label{eq5}
+\end{flalign}
+
+\noindent The decision about the relevant hypothesis follows the standard procedure of hypothesis.
+
+
+\section{R Code, graphs and output}
+\noindent The R-code in Sweave is called \textbf{chunk}. To insert an R chunk, use the \texttt{Chunks} menu at the top right of the source editor({\color{green}{\textbf{green}}} colored). Put the cursor at your desired point and clink the \textbf{chunk} button. To manage what you would like to see in the output file set the options \textit{\texttt{echo, fig, message, warning}} etc.
+
+<<echo=TRUE, fig=TRUE>>=
+my_cols <- c("#00AFBB", "#E7B800", "#FC4E07")  
+# Correlation panel
+panel.cor <- function(x, y){
+    usr <- par("usr"); on.exit(par(usr))
+    par(usr = c(0, 1, 0, 1))
+    r <- round(cor(x, y), digits=2)
+    txt <- paste0("R = ", r)
+    cex.cor <- 0.8/strwidth(txt)
+    text(0.5, 0.5, txt, cex = cex.cor * r)
+}
+# Customize upper panel
+upper.panel<-function(x, y){
+  points(x,y, pch = 19, col = my_cols[iris$Species])
+}
+# Create the plots
+pairs(iris[,1:4], 
+      lower.panel = panel.cor,
+      upper.panel = upper.panel)
+@
+
+\noindent The figures can also be inserted from external source. An example,
+\begin{figure}[h]
+    \centering
+        \begin{minipage}[t]{.99\textwidth}
+                \centering
+                \textbf{Thanks for not doing this}\par\medskip
+                \includegraphics[width=5cm, height=5cm]{sleep.jpeg}
+                %\caption{Synthetic filed and uniform splitting}
+            \end{minipage}            
+            %\vspace{1mm}
+    \end{figure}
+
+
+\noindent The correlation and regression analysis of these data set are as below:
+
+<<echo=TRUE, message=FALSE, warning=FALSE>>=
+#Correlation
+cor(iris[,1:4])
+
+#Regression
+m1 <- lm(Sepal.Length~Species, data = iris, family='gaussian')
+summary(m1)
+@
+
+\noindent This is a very brief introduction of Sweave. To be proficient please visit the details \LaTeX user manual. 
+
+\end{document}
